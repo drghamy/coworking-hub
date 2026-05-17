@@ -1,0 +1,41 @@
+# Java / Maven
+target/
+*.class
+*.jar
+*.war
+*.ear
+
+# Logs
+logs/
+*.log
+api.log
+api.err.log
+
+# IDEs
+.idea/
+.vscode/
+*.iml
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment and local config
+.env
+.env.*
+!.env.example
+
+# Local documentation not intended for GitHub
+SRS.md
+PROJECT_EVALUATION_SUMMARY.md
+
+# Docker / runtime leftovers
+docker-compose.override.yml
+
+# Node / frontend dependencies if added later
+node_modules/
+dist/
+build/
+
+# Maven wrapper runtime files
+.mvn/wrapper/maven-wrapper.jar

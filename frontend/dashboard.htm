@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>CoWork Hub | Dashboard</title>
+</head>
+<body>
+    <nav class="topbar">
+        <div>
+            <strong>CoWork Hub</strong>
+            <span id="displayUser"></span>
+            <span class="role-pill" id="displayRole"></span>
+        </div>
+        <div class="nav-actions">
+            <a href="dashboard.htm">Dashboard</a>
+            <a href="admin.htm" id="adminLink" class="hidden">Admin</a>
+            <button class="ghost" onclick="logout()">Logout</button>
+        </div>
+    </nav>
+
+    <main class="app-shell">
+        <section class="page-header">
+            <div>
+                <h1>Book a Workspace</h1>
+                <p>Choose a time range, search available workspaces, then confirm your booking after reviewing the price.</p>
+            </div>
+        </section>
+
+        <section class="panel">
+            <div class="section-title">
+                <h2>Find Available Workspaces</h2>
+                <button class="secondary small" onclick="setDefaultSearchTimes()">Default Time</button>
+            </div>
+            <div class="form-grid">
+                <div>
+                    <label for="searchStart">Start Time</label>
+                    <input type="datetime-local" id="searchStart">
+                </div>
+                <div>
+                    <label for="searchEnd">End Time</label>
+                    <input type="datetime-local" id="searchEnd">
+                </div>
+                <button class="align-end" onclick="loadAvailableWorkspaces()">Search</button>
+            </div>
+            <p class="message" id="workspaceMessage"></p>
+            <div class="list-grid" id="workspaceList"></div>
+        </section>
+
+        <section class="panel">
+            <div class="section-title">
+                <h2>Latest Booking</h2>
+                <span id="bookingStatus" class="muted">No booking yet</span>
+            </div>
+            <div id="latestBooking" class="details-box"></div>
+        </section>
+
+        <section class="panel">
+            <h2>Add Review</h2>
+            <div class="form-grid">
+                <div>
+                    <label for="reviewWorkspaceId">Workspace ID</label>
+                    <input type="number" id="reviewWorkspaceId" min="1">
+                </div>
+                <div>
+                    <label for="reviewRating">Rating</label>
+                    <select id="reviewRating">
+                        <option value="5">5 - Excellent</option>
+                        <option value="4">4 - Very Good</option>
+                        <option value="3">3 - Good</option>
+                        <option value="2">2 - Fair</option>
+                        <option value="1">1 - Poor</option>
+                    </select>
+                </div>
+                <div class="wide">
+                    <label for="reviewComment">Comment</label>
+                    <input type="text" id="reviewComment" placeholder="Share your thoughts about the workspace">
+                </div>
+                <button class="align-end" onclick="addReview()">Submit Review</button>
+            </div>
+            <p class="message" id="reviewMessage"></p>
+        </section>
+
+        <section class="panel">
+            <div class="section-title">
+                <h2>Reviews</h2>
+                <button class="secondary small" onclick="loadReviewsFromInput()">Show Reviews</button>
+            </div>
+            <p class="muted">Enter a workspace ID above, then show reviews for that workspace.</p>
+            <div class="stack-list" id="reviewList"></div>
+        </section>
+    </main>
+
+    <script src="auth.js"></script>
+    <script>
+        requireAuth();
+        initDashboard();
+    </script>
+</body>
+</html>

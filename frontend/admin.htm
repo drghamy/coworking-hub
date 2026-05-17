@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>CoWork Hub | Admin</title>
+</head>
+<body>
+    <nav class="topbar">
+        <div>
+            <strong>CoWork Hub</strong>
+            <span id="displayUser"></span>
+            <span class="role-pill" id="displayRole"></span>
+        </div>
+        <div class="nav-actions">
+            <a href="dashboard.htm">Dashboard</a>
+            <a href="admin.htm">Admin</a>
+            <button class="ghost" onclick="logout()">Logout</button>
+        </div>
+    </nav>
+
+    <main class="app-shell">
+        <section class="page-header">
+            <div>
+                <h1>Admin Dashboard</h1>
+                <p>Manage users, workspaces, bookings, and invoices through the API gateway.</p>
+            </div>
+        </section>
+
+        <section class="admin-grid">
+            <div class="panel">
+                <h2>Add User</h2>
+                <label for="empUser">Username</label>
+                <input type="text" id="empUser">
+                <label for="empEmail">Email</label>
+                <input type="email" id="empEmail">
+                <label for="empPass">Password</label>
+                <input type="password" id="empPass">
+                <label for="empRole">Role</label>
+                <select id="empRole">
+                    <option value="EMPLOYEE">Employee</option>
+                    <option value="ADMIN">Admin</option>
+                    <option value="CUSTOMER">Customer</option>
+                </select>
+                <button onclick="addEmployee()">Add User</button>
+                <p class="message" id="adminMessage"></p>
+            </div>
+
+            <div class="panel">
+                <div class="section-title">
+                    <h2>Users</h2>
+                    <button class="secondary small" onclick="loadAllUsers()">Refresh</button>
+                </div>
+                <div class="stack-list" id="userList"></div>
+            </div>
+        </section>
+
+        <section class="panel">
+            <h2>Add Workspace</h2>
+            <div class="form-grid">
+                <div>
+                    <label for="workspaceName">Workspace Name</label>
+                    <input type="text" id="workspaceName">
+                </div>
+                <div>
+                    <label for="workspaceType">Type</label>
+                    <select id="workspaceType">
+                        <option value="MEETING_ROOM">Meeting Room</option>
+                        <option value="PRIVATE_OFFICE">Private Office</option>
+                        <option value="DEDICATED_DESK">Dedicated Desk</option>
+                        <option value="SHARED_SPACE">Shared Space</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="workspacePrice">Price per Hour</label>
+                    <input type="number" id="workspacePrice" min="0" step="0.5">
+                </div>
+                <div>
+                    <label for="workspaceCapacity">Capacity</label>
+                    <input type="number" id="workspaceCapacity" min="1">
+                </div>
+                <div class="wide">
+                    <label for="workspaceDescription">Description</label>
+                    <input type="text" id="workspaceDescription">
+                </div>
+                <button class="align-end" onclick="addWorkspace()">Add Workspace</button>
+            </div>
+            <p class="message" id="workspaceAdminMessage"></p>
+        </section>
+
+        <section class="admin-grid">
+            <div class="panel">
+                <div class="section-title">
+                    <h2>Bookings</h2>
+                    <button class="secondary small" onclick="loadAllBookings()">Refresh</button>
+                </div>
+                <div class="stack-list" id="bookingList"></div>
+            </div>
+
+            <div class="panel">
+                <div class="section-title">
+                    <h2>Invoices</h2>
+                    <button class="secondary small" onclick="loadAllInvoices()">Refresh</button>
+                </div>
+                <div class="stack-list" id="invoiceList"></div>
+            </div>
+        </section>
+    </main>
+
+    <script src="auth.js"></script>
+    <script>
+        requireAuth();
+        requireAdmin();
+        initAdmin();
+    </script>
+</body>
+</html>

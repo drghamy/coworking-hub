@@ -84,7 +84,7 @@ services:
     environment:
       DB_HOST: mysql
       DB_PORT: 3306
-      DB_NAME: coworking_main_db
+      DB_NAME: coworking_booking_db
       DB_USERNAME: springstudent
       DB_PASSWORD: springstudent
       EUREKA_DEFAULT_ZONE: http://discovery:8761/eureka/
@@ -109,7 +109,7 @@ services:
     environment:
       DB_HOST: mysql
       DB_PORT: 3306
-      DB_NAME: coworking_main_db
+      DB_NAME: coworking_invoice_db
       DB_USERNAME: springstudent
       DB_PASSWORD: springstudent
       EUREKA_DEFAULT_ZONE: http://discovery:8761/eureka/
